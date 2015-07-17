@@ -37,7 +37,7 @@ For a production environment with a datacenter configuration (multiple instances
 
 ## Crawl & Verify
 
-Using scrapy.org's intro tutorial: http://doc.scrapy.org/en/latest/intro/tutorial.html
+Using scrapy.org's [intro tutorial](http://doc.scrapy.org/en/latest/intro/tutorial.html).
 
 **Crawl:**
 	
@@ -56,8 +56,4 @@ Using scrapy.org's intro tutorial: http://doc.scrapy.org/en/latest/intro/tutoria
 	    59
 	
 	(1 rows)
-
-
-
-
 
