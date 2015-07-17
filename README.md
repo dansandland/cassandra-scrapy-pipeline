@@ -8,14 +8,46 @@ Simple Scrapy pipeline that writes items to Cassandra.
 
 These are notes for my own reference using OS X. They cover installation and running a simple example. I plan on utilizing scrapy and cassandra in a large scale distributed computing project.
 
+## The Pipeline
+
+With an existing scrapy project, add the pipeline and update settings.
+
+**Add to pipelines.py:**
+	
+	# Cassandra Pipeline
+	from cassandra.cluster import Cluster
+	
+	class CassandraPipeline(object):
+	
+	    def __init__(self, cassandra_keyspace):
+	        self.cassandra_keyspace = 'scrapy_dev'
+	
+	    def open_spider(self, spider):
+	        cluster = Cluster()
+	        self.session = cluster.connect(self.cassandra_keyspace)
+	        # create scrapy_items table
+	        self.session.execute("CREATE TABLE IF NOT EXISTS " + self.cassandra_keyspace + ".scrapy_items ( item text, PRIMARY KEY (item))")
+	
+	    def process_item(self, item, spider):
+	        # insert item
+	        self.session.execute("INSERT INTO scrapy_items (item) VALUES (%s)",[str(item)])
+	        return item
+	        
+**settings.py:**
+
+	ITEM_PIPELINES = {
+	    'project.pipelines.CassandraPipeline': 100
+	}
+
+The value `100` in `'project.pipelines.CassandraPipeline': 100` is for determining what order pipelines are run, ascending within a 0-1000 range.
+
 ## Installation
+
+If no scrapy or cassandra, install:
 
 **$:**
 	
-	git clone https://github.com/dansandland/cassandra-scrapy-pipeline.git
-	cd cassandra-scrapy-pipeline
-
-    pip install scrapy
+	pip install scrapy
     brew install cassandra
     pip install cassandra-driver # python cassandra driver
     brew install libev # brew recommended
@@ -41,9 +73,9 @@ Using scrapy.org's [intro tutorial](http://doc.scrapy.org/en/latest/intro/tutori
 
 **Crawl:**
 	
-	$ # from repo directory
-	$ cd project
-	$ scrapy crawl dmoz
+	git clone https://github.com/dansandland/cassandra-scrapy-pipeline.git
+	cd cassandra-scrapy-pipeline/project
+	scrapy crawl dmoz
 	
 **Verify:**
 
