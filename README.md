@@ -33,7 +33,7 @@ Connect to the cluster, create a keyspace called *scrapy_dev* and set replicatio
     
 The value 1 associated with `datacenter1` represents the replication factor. This means there is one copy of each row in each node. A replication factor of 2 would be 2 copies of each row, each on a separate node, providing additional reliability and fault tolerance.
       
-For a production environment with a datacenter configuration (multiple instances) *PropertyFileSnitch* needs to be configured via the *cassandra-topology.properties* file. http://docs.datastax.com/en/cassandra/1.2/cassandra/architecture/architectureSnitchPFSnitch_t.html
+For a production environment with a datacenter configuration (multiple instances) [*PropertyFileSnitch* needs to be configured via the *cassandra-topology.properties* file](http://docs.datastax.com/en/cassandra/1.2/cassandra/architecture/architectureSnitchPFSnitch_t.html). 
 
 ## Crawl & Verify
 
