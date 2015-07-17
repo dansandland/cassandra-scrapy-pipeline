@@ -42,6 +42,7 @@ Using scrapy.org's intro tutorial: http://doc.scrapy.org/en/latest/intro/tutoria
 **Crawl:**
 	
 	$ # from repo directory
+	$ cd project
 	$ scrapy crawl dmoz
 	
 **Verify:**
