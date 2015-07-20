@@ -10,7 +10,7 @@ These are notes for my own reference using OS X. They cover installation and run
 
 ## The Pipeline
 
-With an existing scrapy project and the python cassandra driver installed, add the pipeline and update settings.
+With an existing scrapy project and the python cassandra driver installed; add the pipeline and update settings.
 
 **Add to pipelines.py:**
 	
