@@ -1,12 +1,12 @@
 # Cassandra Scrapy Pipeline
 
-Simple Scrapy pipeline that writes items to Cassandra. 
+Simple Scrapy pipeline configuration that writes items to Cassandra. 
 
 **[Scrapy](http://scrapy.org/)** is a powerful and [well documented](http://doc.scrapy.org/en/1.0/intro/overview.html) python crawling library.
 
 **[Cassandra](http://cassandra.apache.org/)** is one of the [fastest](http://www.datastax.com/apache-cassandra-leads-nosql-benchmark) open source distributed databases.
 
-These are notes for my own reference using OS X. They cover installation and running a simple example. I plan on utilizing scrapy and cassandra in a large scale distributed computing project.
+These are notes for my own reference using OS X. They cover installation and running a simple example.
 
 ## The Pipeline
 
