@@ -1,18 +1,14 @@
 # Cassandra Scrapy Pipeline
 
-Simple Scrapy pipeline configuration that writes items to Cassandra. 
-
-**[Scrapy](http://scrapy.org/)** is a powerful and [well documented](http://doc.scrapy.org/en/1.0/intro/overview.html) python crawling library.
-
-**[Cassandra](http://cassandra.apache.org/)** is one of the [fastest](http://www.datastax.com/apache-cassandra-leads-nosql-benchmark) open source distributed databases.
-
-These are notes for my own reference using OS X. They cover installation and running a simple example.
+Notes on a simple Scrapy pipeline configuration that writes to Cassandra. 
 
 ## The Pipeline
 
 With an existing scrapy project and the python cassandra driver installed; add the pipeline and update settings.
 
-**Add to pipelines.py:**
+**pipelines.py:**
+	
+	...
 	
 	# Cassandra Pipeline
 	from cassandra.cluster import Cluster
@@ -42,10 +38,6 @@ With an existing scrapy project and the python cassandra driver installed; add t
 The value `100` in `'project.pipelines.CassandraPipeline': 100` is for determining what order pipelines are run, ascending within a 0-1000 range.
 
 ## Installation
-
-If no scrapy or cassandra, install:
-
-**$:**
 	
 	pip install scrapy
     brew install cassandra
@@ -68,17 +60,11 @@ The value 1 associated with `datacenter1` represents the replication factor. Thi
 For a production environment with a datacenter configuration (multiple instances) [*PropertyFileSnitch*](http://docs.datastax.com/en/cassandra/1.2/cassandra/architecture/architectureSnitchPFSnitch_t.html) needs to be configured via the *cassandra-topology.properties* file. 
 
 ## Crawl & Verify
-
-Using scrapy.org's [intro tutorial](http://doc.scrapy.org/en/latest/intro/tutorial.html).
-
-**Crawl:**
 	
-	git clone https://github.com/dansandland/cassandra-scrapy-pipeline.git
-	cd cassandra-scrapy-pipeline/project
+	# http://doc.scrapy.org/en/latest/intro/tutorial.html
 	scrapy crawl dmoz
 	
-**Verify:**
-
+	# cassandra shell
 	$ cqlsh
 	cqlsh> use scrapy_dev;
 	cqlsh:scrapy_dev> SELECT COUNT(*) FROM scrapy_items;
